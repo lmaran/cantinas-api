@@ -6,7 +6,7 @@ import * as path from "path";
 import developmentConfig from "./development";
 import stagingConfig from "./staging";
 import productionConfig from "./production";
-import testConfig from "./test";
+import testConfig from "./testing";
 
 interface IBlobSecrets {
     account: string;

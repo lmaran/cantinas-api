@@ -10,9 +10,19 @@ const controller = {
         // })
 
         const users = await userService.getAll();
+        // res.status(200);
         res.json(users);
 
         // res.json([{name: "aaa1234567"}]);
+    },
+
+    getById: async (req: Request, res: Response) => {
+        const userId = req.params.id;
+
+        const user = await userService.getById(userId);
+        res.json(user);
+
+        // res.json({name: "aaa"});
     }
 
 };

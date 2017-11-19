@@ -7,7 +7,7 @@
 import * as express from "express";
 import * as path from "path";
 // import config from "./src/config/environment";
-import setAllRoutes from "./routes";
+import allRoutes from "./routes";
 
 const app: express.Application = express();
 
@@ -22,12 +22,12 @@ const app: express.Application = express();
 // app.use('/', index);
 // app.use('/users', users);
 
-setAllRoutes(app);
+allRoutes.attachTo(app);
 
 // // catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
+// app.use(function (req, res: express.Response, next) {
+//   const err = new Error("Not Found");
+//   res.status(404);
 //   next(err);
 // });
 

@@ -1,20 +1,32 @@
 import config from "../config";
-import { MongoClient, ObjectID } from "mongodb";
+import { MongoClient, ObjectID, Db } from "mongodb";
 
-let theDb: any = undefined; // this will be re-used so the db is only created once (on first request).
-const service  = {
+let theDb: Db = undefined; // this will be re-used so the db is only created once (on first request).
+const service = {
 
     getDb: async () => {
-        if (!theDb) {
-            if (!config.mongo.uri) {
-                throw new Error("Nu este definit un connection string pentru Mongo.");
+        try {
+            if (!theDb) {
+                // console.log("no db...");
+                if (!config.mongo.uri) {
+                    throw new Error("Nu este definit un connection string pentru Mongo.");
+                }
+                const db = await MongoClient.connect(config.mongo.uri, config.mongo.options);
+
+                theDb = db;
+                return db;
+            } else { // db already exists...
+                return theDb;
             }
-            const db = await MongoClient.connect(config.mongo.uri, config.mongo.options);
-            theDb = db;
-            return db;
-        } else { // db already exists...
-            return theDb;
+        } catch (error) {
+            console.log("Caught", error.message);
+            throw new Error(error);
         }
+    },
+
+    // used by some tests
+    removeDbFromCache: () => {
+        theDb = undefined;
     },
 
     normalizedId: (id: any) => {
@@ -37,4 +49,4 @@ const service  = {
 
 };
 
-export { service as mongoService };
+export default service;
