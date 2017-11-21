@@ -1,17 +1,9 @@
-import { Application } from "express";
-import * as path from "path";
-import userController from "./user.controller";
+import { Router } from "express";
+import controller from "./user.controller";
 
-// const routes = (app: Application) => {
-//     app.get("/api/user", userController.getAll);
-// };
+const router = Router();
 
-const userRoutes = {
-    attachTo: (app: Application) => {
-        // API routes
-        app.get("/api/user", userController.getAll);
-        app.get("/api/user/:id", userController.getById);
-    }
-};
+router.get("/", controller.getAll);
+router.get("/:id", controller.getById);
 
-export default userRoutes;
+export default router;

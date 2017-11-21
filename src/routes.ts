@@ -1,27 +1,8 @@
-import { Application } from "express";
+import { Router } from "express";
 import userRoutes from "./components/user/user.routes";
-// import homeRoutes from "./api/home/home.routes";
-// import adminRoutes from "./api/admin/admin.routes";
-// const setAllRoutes = (app: Application) => {
-//     // API routes
-//     setUserRoutes(app);
 
-//     // // server-side views
-//     // homeRoutes(app);
-//     // // client-side views
-//     // adminRoutes(app);
-// };
+const router = Router();
 
-const allRoutes = {
-    attachTo: (app: Application) => {
-        // API routes
-        userRoutes.attachTo(app);
+router.use("/user", userRoutes);
 
-        // // server-side views
-        // homeRoutes(app);
-        // // client-side views
-        // adminRoutes(app);
-    }
-};
-
-export default allRoutes;
+export default router;

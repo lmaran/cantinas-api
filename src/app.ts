@@ -22,7 +22,8 @@ const app: express.Application = express();
 // app.use('/', index);
 // app.use('/users', users);
 
-allRoutes.attachTo(app);
+// allRoutes.attachTo(app);
+app.use("/api", allRoutes);
 
 // // catch 404 and forward to error handler
 // app.use(function (req, res: express.Response, next) {
