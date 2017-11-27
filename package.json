@@ -1,12 +1,8 @@
 {
     "name": "cantinas-api",
-    "version": "0.0.0",
-    "private": true,
-    "jest": {
-        "setupFiles": [
-            "<rootDir>/__mocks__/request.js"
-        ]
-    },
+    "version": "0.0.1",
+    "description": "Rest api for cantinas",
+    "author": "Lucian Maran",
     "scripts": {
         "start": "npm run clean && npm run build && npm run watch",
         "build": "npm run build-ts && npm run tslint",
