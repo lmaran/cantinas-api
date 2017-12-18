@@ -2,11 +2,6 @@
     "name": "cantinas-api",
     "version": "0.0.0",
     "private": true,
-    "jest": {
-        "setupFiles": [
-            "<rootDir>/__mocks__/request.js"
-        ]
-    },
     "scripts": {
         "start": "npm run clean && npm run build && npm run watch",
         "build": "npm run build-ts && npm run tslint",

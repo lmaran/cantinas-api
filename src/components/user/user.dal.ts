@@ -2,7 +2,7 @@ import mongoService from "../../util/mongo.service";
 // let i = 0;
 const collection = "users";
 
-const service = {
+const userDal = {
 
     getAll: async () => {
         // console.log(i + ": getAll start...");
@@ -26,4 +26,4 @@ const service = {
 
 };
 
-export default service;
+export default userDal;

@@ -1,6 +1,6 @@
 import userDal from "./user.dal";
 
-const service = {
+const userService = {
 
     // getAll: async () => {
     //     return [{ name: "aaa" }];
@@ -48,4 +48,4 @@ function delayedHello(name: string, delay: number = Delays.Medium): Promise<stri
         ));
   }
 
-export default service;
+export default userService;

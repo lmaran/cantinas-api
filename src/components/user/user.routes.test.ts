@@ -12,7 +12,7 @@ describe("User routes", () => {
     };
 
     before( () => {
-        userRoutes.attachTo(app);
+        userRoutes.init(app);
     });
 
     it("/api/user/:id - should call the correct method in controller", () => {

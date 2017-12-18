@@ -57,7 +57,7 @@ const common: IConfig = {
             // }
         }
     },
-    port: process.env.PORT || 1410,
+    port: process.env.PORT || 1416,
     rollbarToken: "c40dd41c292340419923230eed1d0d61",
     root: path.normalize(__dirname + "/../../..") // 3 folders back from the current folder
 };

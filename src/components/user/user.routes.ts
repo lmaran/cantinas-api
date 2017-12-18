@@ -1,9 +1,11 @@
-import { Router } from "express";
-import controller from "./user.controller";
+import { Application } from "express";
+import userController from "./user.controller";
 
-const router = Router();
+const userRoutes = {
+    init: (app: Application) => {
+        app.get("/api/user", userController.getAll);
+        app.get("/api/user/:id", userController.getById);
+    }
+};
 
-router.get("/", controller.getAll);
-router.get("/:id", controller.getById);
-
-export default router;
+export default userRoutes;

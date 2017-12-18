@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import userService from "./user.service";
 
-const controller = {
+const userController = {
 
     getAll: async (req: Request, res: Response) => {
 
@@ -27,4 +27,4 @@ const controller = {
 
 };
 
-export default controller;
+export default userController;
