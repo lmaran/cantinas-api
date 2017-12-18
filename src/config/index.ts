@@ -18,6 +18,13 @@ interface IMongoSecrets {
     options?: object;
 }
 
+const enum EnvironmentType {
+    DEVELOPMENT = "development",
+    STAGING = "staging",
+    PRODUCTION = "production",
+    TEST = "testing"
+}
+
 interface IConfig {
     env?: string;
     root?: string;
@@ -66,5 +73,5 @@ const config = _.merge(
     common,
     envConfig[common.env]);
 
-export { IConfig };
+export { IConfig, EnvironmentType };
 export default config;
