@@ -16,7 +16,7 @@ npm test
 ## Production
 
 ```bash
-npm build
+npm build-prod
 
 # from dev (http://localhost:1410):
 NODE_ENV=staging PORT=1410 node dist/server/app.js
