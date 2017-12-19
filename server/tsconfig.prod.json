@@ -4,7 +4,7 @@
         "target": "es6",
         "noImplicitAny": true,
         "moduleResolution": "node",
-        "sourceMap": false,              /* ignore '.map' file. */
+        "sourceMap": false,
         "outDir": "../dist/server",
         "baseUrl": ".",
         "paths": {

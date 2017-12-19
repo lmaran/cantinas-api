@@ -35,7 +35,7 @@ function onError(error: any) {
 
 function onListening() {
     const addr = httpServer.address();
-    console.log(`Express server listening on port ${addr.port} in ${config.env} - mode;`);
+    console.log(`Express server listening on port ${addr.port} in ${config.env} mode;`);
 }
 
 function onClose() {
