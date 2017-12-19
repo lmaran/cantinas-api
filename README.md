@@ -1,3 +1,5 @@
+[ ![Codeship Status for lmaran/cantinas-api](https://app.codeship.com/projects/c72cfc90-c6e1-0135-62b8-760ece7b3e2c/status?branch=master)](https://app.codeship.com/projects/261258)
+
 ## Development
 
 ```bash
