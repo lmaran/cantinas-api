@@ -5,16 +5,16 @@
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,              /* Generates corresponding '.map' file. */
-        "outDir": "dist",
+        "outDir": "../dist",
         "baseUrl": ".",
         "paths": {
             "*": [
-                "node_modules/*",
-                "src/types/*"
+                "../node_modules/*",
+                "../server/types/*"
             ]
         }
     },
     "include": [
-        "src/**/*"
+        "../server/**/*"
     ]
 }

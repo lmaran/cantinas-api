@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": false,              /* ignore '.map' file. */
+        "outDir": "../dist",
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "../node_modules/*",
+                "../server/types/*"
+            ]
+        }
+    },
+    "include": [
+        "../server/**/*"
+    ],
+    "exclude": [
+        "../server/**/*.test.ts"
+    ]
+}

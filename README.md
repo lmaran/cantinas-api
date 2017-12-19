@@ -1,8 +1,14 @@
 ## Development
 
 ```bash
-npm start
 # start server (Node.js, http://localhost:1410):
+npm start
+
+# test with wallaby.js
+http://localhost:51245 or http://wallabyjs.com/app
+
+# test with moch
+npm test
 ```
 
 ## Production

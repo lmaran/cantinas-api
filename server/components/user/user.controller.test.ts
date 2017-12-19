@@ -18,7 +18,7 @@ describe("User Controller", () => {
             // method: 'GET',
             // url: '/user/42',
             params: {
-                id: 123
+                id: 1234
             }
         };
         res = {

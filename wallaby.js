@@ -1,12 +1,12 @@
 module.exports = () => {
     return {
         files: [
-            'src/**/*.ts',
-            '!src/**/*.test.ts'
+            'server/**/*.ts',
+            '!server/**/*.test.ts'
         ],
 
         tests: [
-            'src/**/*.test.ts'
+            'server/**/*.test.ts'
         ],
 
         testFramework: 'mocha',
@@ -25,7 +25,7 @@ module.exports = () => {
             runner: 'node'
         },
 
-        filesWithNoCoverageCalculated: ['src/server.ts']
+        filesWithNoCoverageCalculated: ['server/server.ts']
 
         // workers: {
         //     regular: 1,
