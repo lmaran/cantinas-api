@@ -6,17 +6,17 @@ import app from "../../app";
 describe("User routes", () => {
     let res: request.Response;
 
-    describe ("GET /api/user", () => {
+    describe ("GET /user", () => {
         it("should get an array", async () => {
-            res = await request(app).get("/api/user");
+            res = await request(app).get("/v1/user");
             expect(res.status).to.equal(200);
             expect(res.body).to.be.an("array");
         });
     });
 
-    describe ("GET /api/user/:id", () => {
+    describe ("GET user/:id", () => {
         it("should get an object", async () => {
-            res = await request(app).get("/api/user/123");
+            res = await request(app).get("/v1/user/123");
             expect(res.status).to.equal(200);
         });
     });

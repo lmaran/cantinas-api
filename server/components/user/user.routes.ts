@@ -3,8 +3,8 @@ import userController from "./user.controller";
 
 const userRoutes = {
     init: (app: Application) => {
-        app.get("/api/user", userController.getAll);
-        app.get("/api/user/:id", userController.getById);
+        app.get("/v1/user", userController.getAll);
+        app.get("/v1/user/:id", userController.getById);
     }
 };
 

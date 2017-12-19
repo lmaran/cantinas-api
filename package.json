@@ -8,13 +8,13 @@
 	},
     "scripts": {
         "start": "npm run clean && npm run build && npm run lint && npm run watch",
-        "build": "tsc -p ./server/tsconfig.json",
+        "build": "tsc -p server/tsconfig.dev.json",
+        "build-prod": "tsc -p server/tsconfig.prod.json",
         "lint": "tslint 'server/**/*.ts' -c server/tslint.json  --format stylish --force",
-        "serve": "nodemon dist/server.js --delay 1",
+        "serve": "nodemon dist/server/server.js --delay 1",
         "watch": "run-p \"watch-ts\" \"serve\"",
-        "watch-ts": "tsc -p ./server/tsconfig.json -w",
-        "test": "mocha './dist/**/*.test.js' --exit",
-        "build-prod": "tsc -p ./server/tsconfig.prod.json",
+        "watch-ts": "tsc -p server/tsconfig.dev.json -w",
+        "test": "mocha 'dist/**/*.test.js' --exit",
         "clean": "rimraf dist coverage"
     },
     "dependencies": {
