@@ -13,6 +13,7 @@ describe("check Controller", () => {
         req = {};
         res = {
             send: sinon.spy(),
+            json: sinon.spy(),
         };
     });
 
@@ -20,9 +21,9 @@ describe("check Controller", () => {
         expect(checkController).to.exist;
     });
 
-    describe("getAll", () => {
+    describe("getCheckPage", () => {
         it("should send json on successful retrieve", async () => {
-            const expectedData = [{ name: "aaa" }];
+            // const expectedData = [{ name: "aaa" }];
             await checkController.getCheckPage(<Request>req, <Response>res);
 
             const xxx = res.json as sinon.SinonSpy;

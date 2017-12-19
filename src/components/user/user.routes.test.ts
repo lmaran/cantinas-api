@@ -1,26 +1,52 @@
 import { expect } from "chai";
-import * as sinon from "sinon";
+import * as request from "supertest";
 
-import userRoutes from "./user.routes";
-import userController from "./user.controller";
+import app from "../../app";
 
 describe("User routes", () => {
-    const app: any = {
-        get: sinon.spy(),
-        post: sinon.spy(),
-        delete: sinon.spy()
-    };
+    let res: request.Response;
 
-    before( () => {
-        userRoutes.init(app);
+    describe ("GET /api/user", () => {
+        it("should get an array", async () => {
+            res = await request(app).get("/api/user");
+            expect(res.status).to.equal(200);
+            expect(res.body).to.be.an("array");
+        });
     });
 
-    it("/api/user/:id - should call the correct method in controller", () => {
-        expect(app.get.calledWith("/api/user/:id", userController.getById)).to.be.true;
-    });
-
-    it("/api/user - should call the correct method in controller", () => {
-        expect(app.get.calledWith("/api/user", userController.getAll)).to.be.true;
+    describe ("GET /api/user/:id", () => {
+        it("should get an object", async () => {
+            res = await request(app).get("/api/user/123");
+            expect(res.status).to.equal(200);
+        });
     });
 
 });
+
+// --------------------------------
+// old
+
+// // met2: callback (end + done)
+// describe ("GET /api/user", () => {
+//     it("should get an array", (done) => {
+//         request(app)
+//             .get("/api/user")
+//             .end((err, res: Response) => {
+//                 expect(res.status).to.equal(200);
+//                 expect(res.body).to.be.an("array");
+//                 done();
+//             });
+//     });
+// });
+
+// // met3: promise (then)
+// describe ("GET /api/user", () => {
+//     it("should get an array", () => {
+//         request(app)
+//             .get("/api/user")
+//             .then( (res: Response) => {
+//                 expect(res.status).to.equal(200);
+//                 expect(res.body).to.be.an("array");
+//             });
+//     });
+// });

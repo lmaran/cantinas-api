@@ -2,7 +2,9 @@ import config from "./config";
 import app from "./app";
 import * as http from "http";
 
+// const app = expressApp.getInstance();
 const httpServer: http.Server = http.createServer(app);
+httpServer.address();
 
 httpServer.listen(config.port);
 httpServer.on("error", onError);
@@ -39,3 +41,5 @@ function onListening() {
 function onClose() {
     console.log("was closed");
 }
+
+// export default httpServer;

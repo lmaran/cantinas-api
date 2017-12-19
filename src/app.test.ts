@@ -3,16 +3,20 @@ import * as sinon from "sinon";
 import { Application } from "express";
 
 import app from "./app";
-// import allRoutes from "./routes";
+import allRoutes from "./routes";
 
-describe ("User Service", () => {
+describe ("App module", () => {
 
-    it("adds 1 + 2 to equal 3", () => {
-        // console.log(app);
-        expect(app).to.exist;
-        // expect(1).to.equal(1);
+    beforeEach(() => {
+
     });
 
-
+    it("should init routes", () => {
+        const allRoutesSpy = allRoutes.init = sinon.spy();
+        // const app = expressApp.getInstance();
+        expect(app).to.exist;
+        // expect(allRoutesSpy.calledWith(app)).to.be.true;
+        // expect(1).to.equal(1);
+    });
 
 });

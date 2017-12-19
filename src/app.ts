@@ -9,7 +9,18 @@ import * as path from "path";
 // import config from "./src/config/environment";
 import allRoutes from "./routes";
 
+// const expressApp = {
+//     getInstance: () => {
+//         const app: express.Application = express();
+//         allRoutes.init(app);
+//         return app;
+//     }
+// };
+
 const app: express.Application = express();
+allRoutes.init(app);
+
+// const app: express.Application = express();
 
 // var express = require('express');
 // var path = require('path');
@@ -22,7 +33,7 @@ const app: express.Application = express();
 // app.use('/', index);
 // app.use('/users', users);
 
-allRoutes.init(app);
+// allRoutes.init(app);
 // app.use("/api", allRoutes);
 
 // // catch 404 and forward to error handler

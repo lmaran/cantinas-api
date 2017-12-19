@@ -1,20 +1,17 @@
 import { expect } from "chai";
-import * as sinon from "sinon";
+import * as request from "supertest";
 
-import homeRoutes from "./home.routes";
-import homeController from "./home.controller";
+import app from "../../app";
 
-describe("home routes", () => {
-    const app: any = {
-        get: sinon.spy(),
-    };
+describe("Home routes", () => {
+    let res: request.Response;
 
-    before( () => {
-        homeRoutes.init(app);
-    });
-
-    it("/ - should call the correct method in controller", () => {
-        expect(app.get.calledWith("/", homeController.getHomePage)).to.be.true;
+    describe ("GET /", () => {
+        it("should get a string", async () => {
+            res = await request(app).get("/");
+            expect(res.status).to.equal(200);
+            expect(res.text).equal("Hello Cantinas API");
+        });
     });
 
 });

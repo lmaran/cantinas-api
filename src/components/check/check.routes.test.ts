@@ -1,20 +1,17 @@
 import { expect } from "chai";
-import * as sinon from "sinon";
+import * as request from "supertest";
 
-import checkRoutes from "./check.routes";
-import checkController from "./check.controller";
+import app from "../../app";
 
-describe("check routes", () => {
-    const app: any = {
-        get: sinon.spy(),
-    };
+describe("Home routes", () => {
+    let res: request.Response;
 
-    before( () => {
-        checkRoutes.init(app);
-    });
-
-    it("/check - should call the correct method in controller", () => {
-        expect(app.get.calledWith("/check", checkController.getCheckPage)).to.be.true;
+    describe ("GET /check", () => {
+        it("should get a string", async () => {
+            res = await request(app).get("/check");
+            expect(res.status).to.equal(200);
+            expect(res.text).contain("cantinas-api-");
+        });
     });
 
 });
