@@ -32,7 +32,7 @@ function onError(error) {
 }
 function onListening() {
     const addr = httpServer.address();
-    console.log(`Express server listening on port ${addr.port} in ${config_1.default.env} - mode;`);
+    console.log(`Express server listening on port ${addr.port} in ${config_1.default.env} mode;`);
 }
 function onClose() {
     console.log("was closed");
