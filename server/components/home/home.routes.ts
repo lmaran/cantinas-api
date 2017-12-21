@@ -1,10 +1,8 @@
-import { Application } from "express";
+import { Router } from "express";
 import homeController from "./home.controller";
 
-const homeRoutes = {
-    init: (app: Application) => {
-        app.get("/", homeController.getHomePage);
-    }
-};
+const router = Router();
 
-export default homeRoutes;
+router.get("/", homeController.getHomePage);
+
+export default router;

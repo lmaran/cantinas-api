@@ -1,10 +1,8 @@
-import { Application } from "express";
+import { Router } from "express";
 import checkController from "./check.controller";
 
-const checkRoutes = {
-    init: (app: Application) => {
-        app.get("/check", checkController.getCheckPage);
-    }
-};
+const router = Router();
 
-export default checkRoutes;
+router.get("/", checkController.getCheckPage);
+
+export default router;

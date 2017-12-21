@@ -8,7 +8,7 @@ describe("Home routes", () => {
 
     describe ("GET /check", () => {
         it("should get a string", async () => {
-            res = await request(app).get("/check");
+            res = await request(app).get("/api/check");
             expect(res.status).to.equal(200);
             expect(res.text).contain("cantinas-api-");
         });

@@ -23,10 +23,7 @@ describe("check Controller", () => {
 
     describe("getCheckPage", () => {
         it("should send json on successful retrieve", async () => {
-            // const expectedData = [{ name: "aaa" }];
             await checkController.getCheckPage(<Request>req, <Response>res);
-
-            const xxx = res.json as sinon.SinonSpy;
             sinon.assert.calledWith(res.send as sinon.SinonSpy, "cantinas-api-" + (process.env.DEPLOYMENT_SLOT || "noslot") + "-" + process.env.NODE_ENV);
         });
     });

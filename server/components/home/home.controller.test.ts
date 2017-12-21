@@ -23,14 +23,9 @@ describe("home Controller", () => {
     describe("getHomePage", () => {
         it("should successful retrieve", async () => {
             const expectedData = [{ name: "aaa" }];
-            // homeServiceStub = sinon.stub(homeService, "getAll").returns(expectedData);
             await homeController.getHomePage(<Request>req, <Response>res);
 
-            const xxx = res.json as sinon.SinonSpy;
             sinon.assert.calledWith(res.send as sinon.SinonSpy, "Hello Cantinas API");
-
-            // expect(res.statusCode).equal(200);
-            // homeServiceStub.restore();
         });
     });
 

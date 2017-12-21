@@ -18,7 +18,8 @@ import allRoutes from "./routes";
 // };
 
 const app: express.Application = express();
-allRoutes.init(app);
+// allRoutes.init(app);
+app.use("/api", allRoutes);
 
 // const app: express.Application = express();
 

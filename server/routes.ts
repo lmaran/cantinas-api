@@ -1,21 +1,13 @@
-import { Application } from "express";
+import { Router } from "express";
+
 import userRoutes from "./components/user/user.routes";
 import homeRoutes from "./components/home/home.routes";
 import checkRoutes from "./components/check/check.routes";
 
-const allRoutes = {
-    init: (app: Application) => {
-        // API routes
-        userRoutes.init(app); // => /api
+const router = Router();
 
-        // View routes
-        homeRoutes.init(app); // => /
-        checkRoutes.init(app); // => /check
+router.use("/v1/user", userRoutes);
+router.use("/check", checkRoutes);
+router.use("", homeRoutes);
 
-        // app.get("/", (req, res) => {
-        //     res.send("Hello World");
-        // });
-    }
-};
-
-export default allRoutes;
+export default router;
