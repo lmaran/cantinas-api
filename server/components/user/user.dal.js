@@ -9,25 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongo_service_1 = require("../../util/mongo.service");
-// let i = 0;
 const collection = "users";
 const userDal = {
     getAll: () => __awaiter(this, void 0, void 0, function* () {
-        // console.log(i + ": getAll start...");
         const db = yield mongo_service_1.default.getDb();
-        // console.log("getAll have a db...");
-        const data = yield db.collection(collection).find().toArray();
-        // console.log("getAll have data...");
-        // console.log("");
-        // i++;
-        return data;
+        return yield db.collection(collection).find().toArray();
     }),
     // // ---------- CRUD ----------
     getById: (id) => __awaiter(this, void 0, void 0, function* () {
         const db = yield mongo_service_1.default.getDb();
         id = mongo_service_1.default.normalizedId(id);
-        const data = yield db.collection(collection).findOne({ _id: id });
-        return data;
+        return yield db.collection(collection).findOne({ _id: id });
     })
 };
 exports.default = userDal;

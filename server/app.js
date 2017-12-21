@@ -16,7 +16,8 @@ const routes_1 = require("./routes");
 //     }
 // };
 const app = express();
-routes_1.default.init(app);
+// allRoutes.init(app);
+app.use("/api", routes_1.default);
 // const app: express.Application = express();
 // var express = require('express');
 // var path = require('path');
