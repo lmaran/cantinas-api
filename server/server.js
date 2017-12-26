@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = require("./config");
 const app_1 = require("./app");
 const http = require("http");
-// const app = expressApp.getInstance();
 const httpServer = http.createServer(app_1.default);
 httpServer.address();
 httpServer.listen(config_1.default.port);
@@ -16,7 +15,6 @@ function onError(error) {
     if (error.syscall !== "listen") {
         throw error;
     }
-    // handle specific listen errors with friendly messages
     switch (error.code) {
         case "EACCES":
             console.error(`Port ${config_1.default.port} requires elevated privileges`);
@@ -37,4 +35,3 @@ function onListening() {
 function onClose() {
     console.log("was closed");
 }
-// export default httpServer; 

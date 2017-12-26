@@ -10,12 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = require("../config");
 const mongodb_1 = require("mongodb");
-let theDb = undefined; // this will be re-used so the db is only created once (on first request).
+let theDb = undefined;
 const service = {
     getDb: () => __awaiter(this, void 0, void 0, function* () {
         try {
             if (!theDb) {
-                // console.log("no db...");
                 if (!config_1.default.mongo.uri) {
                     throw new Error("Nu este definit un connection string pentru Mongo.");
                 }
@@ -32,7 +31,6 @@ const service = {
             throw new Error(error);
         }
     }),
-    // used by some tests
     removeDbFromCache: () => {
         theDb = undefined;
     },

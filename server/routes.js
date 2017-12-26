@@ -5,7 +5,7 @@ const user_routes_1 = require("./components/user/user.routes");
 const home_routes_1 = require("./components/home/home.routes");
 const check_routes_1 = require("./components/check/check.routes");
 const router = express_1.Router();
-router.use("/v1/user", user_routes_1.default);
+router.use("/v1/users", user_routes_1.default);
 router.use("/check", check_routes_1.default);
 router.use("", home_routes_1.default);
 exports.default = router;
