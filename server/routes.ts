@@ -6,7 +6,7 @@ import checkRoutes from "./components/check/check.routes";
 
 const router = Router();
 
-router.use("/v1/user", userRoutes);
+router.use("/v1/users", userRoutes);
 router.use("/check", checkRoutes);
 router.use("", homeRoutes);
 

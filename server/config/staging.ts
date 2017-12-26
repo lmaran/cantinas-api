@@ -13,7 +13,8 @@ const config: IConfig = {
     azureBlobStorageCool: {
         account: process.env.AZURE_BLOB_STORAGE_COOL_ACCOUNT,
         key: process.env.AZURE_BLOB_STORAGE_COOL_ACCESS_KEY
-    }
+    },
+    authRootUrl: process.env.AUTH_ROOT_URL
 };
 
 export default config;

@@ -1,12 +1,8 @@
-// process.env.NODE_ENV = process.env.NODE_ENV || "development";
-
 import * as _ from "lodash";
 import * as path from "path";
 
-import developmentConfig from "./development";
-import stagingConfig from "./staging";
-import productionConfig from "./production";
-import testConfig from "./testing";
+const env: string = (process.env.NODE_ENV || "development").toLowerCase();
+const envConfig: IConfig = require(`./${env}`).default;
 
 interface IBlobSecrets {
     account: string;
@@ -35,27 +31,14 @@ interface IConfig {
     // externalUrl?: string;
     azureBlobStorage?: IBlobSecrets;
     azureBlobStorageCool?: IBlobSecrets;
+    authRootUrl: string;
 }
-
-interface IEnvConfig {
-    [key: string]: IConfig;
-    // development: IConfig;
-    // test: IConfig;
-}
-
-const envConfig: IEnvConfig = {
-    development: developmentConfig,
-    staging: stagingConfig,
-    production: productionConfig,
-    test: testConfig
-
-};
 
 // All configurations will extend these options
 // ============================================
 
 const common: IConfig = {
-    env: process.env.NODE_ENV || "development",
+    env: env,
     mongo: {
         options: {
             // db: {
@@ -64,14 +47,11 @@ const common: IConfig = {
             // }
         }
     },
-    port: process.env.PORT || 1416,
     rollbarToken: "c40dd41c292340419923230eed1d0d61",
     root: path.normalize(__dirname + "/../../..") // 3 folders back from the current folder
 };
 
-const config = _.merge(
-    common,
-    envConfig[common.env]);
+const config = _.merge(common, envConfig);
 
 export { IConfig, EnvironmentType };
 export default config;
