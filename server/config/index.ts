@@ -31,7 +31,7 @@ interface IConfig {
     // externalUrl?: string;
     azureBlobStorage?: IBlobSecrets;
     azureBlobStorageCool?: IBlobSecrets;
-    authRootUrl: string;
+    authRootUrl?: string;
 }
 
 // All configurations will extend these options
