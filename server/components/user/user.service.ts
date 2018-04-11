@@ -12,6 +12,10 @@ const userService = {
         return(user);
     },
 
+    create: async (user: any) => {
+        await userDal.create(user);
+    },
+
 };
 
 export default userService;

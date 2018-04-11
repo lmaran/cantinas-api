@@ -23,6 +23,23 @@ const userController = {
         res.json(user);
 
         // res.json({name: "aaa"});
+    },
+
+    create: async (req: Request, res: Response) => {
+        // console.log("aaa");
+        // Validate request
+        if ( !req.body) {
+            return res.status(400).send({
+                message: "Note content can not be empty"
+            });
+        }
+
+        const user = req.body;
+
+        await userService.create(user);
+        res.json(user);
+
+        // res.json({name: "aaa"});
     }
 
 };

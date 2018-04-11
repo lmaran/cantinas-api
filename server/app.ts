@@ -9,6 +9,8 @@ import * as path from "path";
 // import config from "./src/config/environment";
 import allRoutes from "./routes";
 
+import * as bodyParser from "body-parser";
+
 // const expressApp = {
 //     getInstance: () => {
 //         const app: express.Application = express();
@@ -19,6 +21,10 @@ import allRoutes from "./routes";
 
 const app: express.Application = express();
 // allRoutes.init(app);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // support form-encoded bodies (for the token endpoint)
+
 app.use("/api", allRoutes);
 
 // const app: express.Application = express();

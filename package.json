@@ -20,6 +20,7 @@
         "clean": "rimraf dist"
     },
     "dependencies": {
+        "body-parser": "^1.18.2",
         "express": "~4.15.5",
         "lodash": "^4.17.4",
         "mongodb": "^2.2.33"
