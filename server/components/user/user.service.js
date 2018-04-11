@@ -18,5 +18,8 @@ const userService = {
         const user = yield user_dal_1.default.getById(id);
         return (user);
     }),
+    create: (user) => __awaiter(this, void 0, void 0, function* () {
+        yield user_dal_1.default.create(user);
+    }),
 };
 exports.default = userService;

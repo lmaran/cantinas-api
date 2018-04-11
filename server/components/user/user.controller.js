@@ -18,6 +18,16 @@ const userController = {
         const userId = req.params.id;
         const user = yield user_service_1.default.getById(userId);
         res.json(user);
+    }),
+    create: (req, res) => __awaiter(this, void 0, void 0, function* () {
+        if (!req.body) {
+            return res.status(400).send({
+                message: "Note content can not be empty"
+            });
+        }
+        const user = req.body;
+        yield user_service_1.default.create(user);
+        res.json(user);
     })
 };
 exports.default = userController;
