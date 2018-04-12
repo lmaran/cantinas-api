@@ -7,47 +7,44 @@ import userDAL from "./user.dal";
 import userService from "./user.service";
 
 describe("User DAL", () => {
+  describe("getAll", () => {
+    it("should return all data", async () => {
+      const expectedData: any = [
+        {
+          _id: new ObjectID("5a0b4d6e7f37f42883269ad6"),
+          firstName: "Joe",
+          lastName: "Doe",
+          age: 46
+        },
+        {
+          _id: new ObjectID("5a0dd8937f37f42883269ade"),
+          firstName: "Joe2",
+          lastName: "Doe2",
+          age: 462
+        }
+      ];
 
-    describe("getAll", () => {
-        it("should return all data", async () => {
+      const actualData = await userDAL.getAll();
 
-            const expectedData: any = [
-                {
-                    _id: new ObjectID("5a0b4d6e7f37f42883269ad6"),
-                    firstName: "Joe",
-                    lastName: "Doe",
-                    age: 46
-                },
-                {
-                    _id: new ObjectID("5a0dd8937f37f42883269ade"),
-                    firstName: "Joe2",
-                    lastName: "Doe2",
-                    age: 462
-                }
-            ];
-
-            const actualData = await userDAL.getAll();
-
-            expect(actualData).deep.equal(expectedData);
-            expect(actualData[0]).to.have.property("lastName");
-            expect(actualData).to.have.lengthOf(2);
-        });
+      expect(actualData).deep.equal(expectedData);
+      expect(actualData[0]).to.have.property("lastName");
+      expect(actualData).to.have.lengthOf(2);
     });
+  });
 
-    describe("getById", () => {
-        it("should return data by ID", async () => {
-            const expectedData: any = {
-                _id: new ObjectID("5a0b4d6e7f37f42883269ad6"),
-                firstName: "Joe",
-                lastName: "Doe",
-                age: 46
-            };
+  describe("getById", () => {
+    it("should return data by ID", async () => {
+      const expectedData: any = {
+        _id: new ObjectID("5a0b4d6e7f37f42883269ad6"),
+        firstName: "Joe",
+        lastName: "Doe",
+        age: 46
+      };
 
-            const actualData = await userDAL.getById("5a0b4d6e7f37f42883269ad6");
+      const actualData = await userDAL.findOneById("5a0b4d6e7f37f42883269ad6");
 
-            expect(actualData).deep.equal(expectedData);
-            expect(actualData).to.have.property("lastName");
-        });
+      expect(actualData).deep.equal(expectedData);
+      expect(actualData).to.have.property("lastName");
     });
-
+  });
 });

@@ -1,21 +1,23 @@
 import userDal from "./user.dal";
 
 const userService = {
+  getAll: async () => {
+    const users = await userDal.getAll();
+    return users;
+  },
 
-    getAll: async () => {
-        const users = await userDal.getAll();
-        return(users);
-    },
+  getOneById: async (id: any) => {
+    const user = await userDal.findOneById(id);
+    return user;
+  },
 
-    getById: async (id: any) => {
-        const user = await userDal.getById(id);
-        return(user);
-    },
+  insertOne: async (user: any) => {
+    await userDal.insertOne(user);
+  },
 
-    create: async (user: any) => {
-        await userDal.create(user);
-    },
-
+  deleteOneById: async (id: any) => {
+    await userDal.deleteOneById(id);
+  }
 };
 
 export default userService;
