@@ -14,20 +14,25 @@ const userController = {
         const users = yield user_service_1.default.getAll();
         res.json(users);
     }),
-    getById: (req, res) => __awaiter(this, void 0, void 0, function* () {
+    getOneById: (req, res) => __awaiter(this, void 0, void 0, function* () {
         const userId = req.params.id;
-        const user = yield user_service_1.default.getById(userId);
+        const user = yield user_service_1.default.getOneById(userId);
         res.json(user);
     }),
-    create: (req, res) => __awaiter(this, void 0, void 0, function* () {
+    insertOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
         if (!req.body) {
             return res.status(400).send({
                 message: "Note content can not be empty"
             });
         }
         const user = req.body;
-        yield user_service_1.default.create(user);
+        yield user_service_1.default.insertOne(user);
         res.json(user);
+    }),
+    deleteOneById: (req, res) => __awaiter(this, void 0, void 0, function* () {
+        const userId = req.params.id;
+        yield user_service_1.default.deleteOneById(userId);
+        res.sendStatus(204);
     })
 };
 exports.default = userController;

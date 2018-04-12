@@ -42,7 +42,7 @@ describe("User DAL", () => {
                 lastName: "Doe",
                 age: 46
             };
-            const actualData = yield user_dal_1.default.getById("5a0b4d6e7f37f42883269ad6");
+            const actualData = yield user_dal_1.default.findOneById("5a0b4d6e7f37f42883269ad6");
             chai_1.expect(actualData).deep.equal(expectedData);
             chai_1.expect(actualData).to.have.property("lastName");
         }));

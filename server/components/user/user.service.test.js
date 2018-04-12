@@ -33,7 +33,7 @@ describe("User Service", () => {
     });
     describe("getById", () => {
         beforeEach(() => {
-            userDALStub = sinon.stub(user_dal_1.default, "getById");
+            userDALStub = sinon.stub(user_dal_1.default, "findOneById");
         });
         afterEach(() => {
             userDALStub.restore();
@@ -41,7 +41,7 @@ describe("User Service", () => {
         it("should return data 1", () => __awaiter(this, void 0, void 0, function* () {
             const expectedData = { name: "user 1" };
             userDALStub.returns(expectedData);
-            const users = yield user_service_1.default.getById(1);
+            const users = yield user_service_1.default.getOneById(1);
             chai_1.expect(users).deep.equal(expectedData);
         }));
     });

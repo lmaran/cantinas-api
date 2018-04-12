@@ -48,8 +48,10 @@ describe("User Controller", () => {
     describe("getById", () => {
         it("should send json on successful retrieve", () => __awaiter(this, void 0, void 0, function* () {
             const expectedData = { name: "aaa" };
-            userServiceStub = sinon.stub(user_service_1.default, "getById").returns(expectedData);
-            yield user_controller_1.default.getById(req, res);
+            userServiceStub = sinon
+                .stub(user_service_1.default, "getOneById")
+                .returns(expectedData);
+            yield user_controller_1.default.getOneById(req, res);
             sinon.assert.calledWith(res.json, expectedData);
             userServiceStub.restore();
         }));

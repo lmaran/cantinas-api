@@ -12,14 +12,17 @@ const user_dal_1 = require("./user.dal");
 const userService = {
     getAll: () => __awaiter(this, void 0, void 0, function* () {
         const users = yield user_dal_1.default.getAll();
-        return (users);
+        return users;
     }),
-    getById: (id) => __awaiter(this, void 0, void 0, function* () {
-        const user = yield user_dal_1.default.getById(id);
-        return (user);
+    getOneById: (id) => __awaiter(this, void 0, void 0, function* () {
+        const user = yield user_dal_1.default.findOneById(id);
+        return user;
     }),
-    create: (user) => __awaiter(this, void 0, void 0, function* () {
-        yield user_dal_1.default.create(user);
+    insertOne: (user) => __awaiter(this, void 0, void 0, function* () {
+        yield user_dal_1.default.insertOne(user);
     }),
+    deleteOneById: (id) => __awaiter(this, void 0, void 0, function* () {
+        yield user_dal_1.default.deleteOneById(id);
+    })
 };
 exports.default = userService;
