@@ -23,6 +23,12 @@ const userDal = {
     return await db.collection(collection).insertOne(user);
   },
 
+  updateOne: async (user: any) => {
+    const db = await mongoService.getDb();
+    user._id = mongoService.normalizedId(user._id);
+    return await db.collection(collection).findOneAndUpdate({ _id: user._id }, user);
+  },
+
   deleteOneById: async (id: any) => {
     const db = await mongoService.getDb();
     id = mongoService.normalizedId(id);

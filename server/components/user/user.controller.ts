@@ -28,7 +28,7 @@ const userController = {
     // Validate request
     if (!req.body) {
       return res.status(400).send({
-        message: "Note content can not be empty"
+        message: "User content can not be empty"
       });
     }
 
@@ -39,6 +39,24 @@ const userController = {
 
     // res.json({name: "aaa"});
   },
+
+  updateOne: async (req: Request, res: Response) => {
+    // console.log("aaa");
+    // Validate request
+    if (!req.body) {
+      return res.status(400).send({
+        message: "User content can not be empty"
+      });
+    }
+
+    const user = req.body;
+
+    await userService.updateOne(user);
+    res.json(user);
+
+    // res.json({name: "aaa"});
+  },
+
 
   deleteOneById: async (req: Request, res: Response) => {
     const userId = req.params.id;

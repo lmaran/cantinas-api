@@ -15,6 +15,10 @@ const userService = {
     await userDal.insertOne(user);
   },
 
+  updateOne: async (user: any) => {
+    await userDal.updateOne(user);
+  },
+
   deleteOneById: async (id: any) => {
     await userDal.deleteOneById(id);
   }
