@@ -22,11 +22,21 @@ const userController = {
     insertOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
         if (!req.body) {
             return res.status(400).send({
-                message: "Note content can not be empty"
+                message: "User content can not be empty"
             });
         }
         const user = req.body;
         yield user_service_1.default.insertOne(user);
+        res.json(user);
+    }),
+    updateOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
+        if (!req.body) {
+            return res.status(400).send({
+                message: "User content can not be empty"
+            });
+        }
+        const user = req.body;
+        yield user_service_1.default.updateOne(user);
         res.json(user);
     }),
     deleteOneById: (req, res) => __awaiter(this, void 0, void 0, function* () {

@@ -27,6 +27,11 @@ const userDal = {
         const db = yield mongo_service_1.default.getDb();
         return yield db.collection(collection).insertOne(user);
     }),
+    updateOne: (user) => __awaiter(this, void 0, void 0, function* () {
+        const db = yield mongo_service_1.default.getDb();
+        user._id = mongo_service_1.default.normalizedId(user._id);
+        return yield db.collection(collection).findOneAndUpdate({ _id: user._id }, user);
+    }),
     deleteOneById: (id) => __awaiter(this, void 0, void 0, function* () {
         const db = yield mongo_service_1.default.getDb();
         id = mongo_service_1.default.normalizedId(id);

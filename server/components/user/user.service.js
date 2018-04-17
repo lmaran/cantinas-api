@@ -21,6 +21,9 @@ const userService = {
     insertOne: (user) => __awaiter(this, void 0, void 0, function* () {
         yield user_dal_1.default.insertOne(user);
     }),
+    updateOne: (user) => __awaiter(this, void 0, void 0, function* () {
+        yield user_dal_1.default.updateOne(user);
+    }),
     deleteOneById: (id) => __awaiter(this, void 0, void 0, function* () {
         yield user_dal_1.default.deleteOneById(id);
     })
