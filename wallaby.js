@@ -1,31 +1,26 @@
 module.exports = () => {
     return {
-        files: [
-            'server/**/*.ts',
-            '!server/test**/*.test.ts'
-        ],
+        files: ["src/**/*.ts", "!src/test**/*.test.ts"],
 
-        tests: [
-            'server/test/**/*.test.ts'
-        ],
+        tests: ["src/test/**/*.test.ts"],
 
-        testFramework: 'mocha',
+        testFramework: "mocha",
 
-        setup: function () {
-            console.log('global wallaby setup: ' + process.pid);
+        setup: function() {
+            console.log("global wallaby setup: " + process.pid);
             // global.expect = require('chai').expect;
         },
 
-        teardown: function(){
-            console.log('global wallaby teardown');
+        teardown: function() {
+            console.log("global wallaby teardown");
         },
 
         env: {
-            type: 'node',
-            runner: 'node'
+            type: "node",
+            runner: "node",
         },
 
-        filesWithNoCoverageCalculated: ['server/server.ts']
+        filesWithNoCoverageCalculated: ["src/server.ts"],
 
         // workers: {
         //     regular: 1,
@@ -37,6 +32,5 @@ module.exports = () => {
         // compilers: {
         //   '**/*.ts': w.compilers.typeScript({module: 'commonjs'})
         // }
-
     };
 };

@@ -5,7 +5,7 @@
         "target": "es6",
         "noImplicitAny": false,
         "moduleResolution": "node",
-        "outDir": "dist/server",
+        "outDir": "dist/src",
         // "paths": {
         //     "*": [
         //         "node_modules/*",
@@ -14,10 +14,6 @@
         // },
         "lib": ["es2017", "dom"]
     },
-    "include": [
-        "server/**/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
 }
