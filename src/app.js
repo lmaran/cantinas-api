@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const path = require("path");
+const routes_1 = require("./routes");
+const middlewares_1 = require("./middlewares");
+const bodyParser = require("body-parser");
+const app = express();
+app.enable("trust proxy");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(middlewares_1.setContext);
+app.use(middlewares_1.httpLogHandler);
+app.use("/api", routes_1.default);
+app.use(middlewares_1.catch404);
+app.use(middlewares_1.errorHandler);
+exports.default = app;
