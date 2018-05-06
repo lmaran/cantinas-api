@@ -1,11 +1,27 @@
-import { IConfig } from "./";
+import { IEnvConfig } from "../interfaces";
+import { LogLevel, LogDetail } from "../constants";
 
-const config: IConfig = {
-    port: process.env.PORT || 1416,
+const config: IEnvConfig = {
     mongo: {
-        uri: "mongodb://localhost/cantinas-dev"
+        uri: "mongodb://localhost",
+        dbName: "cantinas-dev",
     },
-    authRootUrl: process.env.AUTH_ROOT_URL || "http://cantinas.ro"
+    rollbarToken: "<rollbarToken>",
+    logglyToken: "<logglyToken>",
+    logglySubdomain: "<logglySubdomain>",
+    logLevel: LogLevel.DEBUG,
+    httpLogDetails: {
+        request: {
+            general: LogDetail.PARTIAL,
+            headers: LogDetail.NONE,
+            body: false,
+        },
+        response: {
+            general: false,
+            headers: false,
+            body: false,
+        },
+    },
 };
 
 export default config;

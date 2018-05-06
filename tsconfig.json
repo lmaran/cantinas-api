@@ -1,22 +1,23 @@
 {
     "compilerOptions": {
+        "strict": true,
         "module": "commonjs",
         "target": "es6",
         "noImplicitAny": false,
         "moduleResolution": "node",
         "outDir": "dist/server",
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                "node_modules/*",
-                "server/types/*"
-            ]
-        }
+        // "paths": {
+        //     "*": [
+        //         "node_modules/*",
+        //         "server/types/*"
+        //     ]
+        // },
+        "lib": ["es2017", "dom"]
     },
     "include": [
         "server/**/*"
     ],
     "exclude": [
         "node_modules"
-    ]    
+    ]
 }

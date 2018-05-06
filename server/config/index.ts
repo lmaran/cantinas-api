@@ -1,57 +1,37 @@
 import * as _ from "lodash";
-import * as path from "path";
+import { EnvironmentType, LogDetail, LogLevel } from "../constants";
+import { IEnvConfig } from "../interfaces";
 
-const env: string = (process.env.NODE_ENV || "development").toLowerCase();
-const envConfig: IConfig = require(`./${env}`).default;
+const env: string = (process.env.NODE_ENV || EnvironmentType.DEVELOPMENT).toLowerCase();
+const envConfig: IEnvConfig = require(`./${env}`).default;
 
-interface IBlobSecrets {
-    account: string;
-    key: string;
-}
-
-interface IMongoSecrets {
-    uri?: string;
-    options?: object;
-}
-
-const enum EnvironmentType {
-    DEVELOPMENT = "development",
-    STAGING = "staging",
-    PRODUCTION = "production",
-    TEST = "testing"
-}
-
-interface IConfig {
-    env?: string;
-    root?: string;
-    port?: string | number;
-    userRoles?: string[];
-    mongo?: IMongoSecrets;
-    rollbarToken?: string;
-    // externalUrl?: string;
-    azureBlobStorage?: IBlobSecrets;
-    azureBlobStorageCool?: IBlobSecrets;
-    authRootUrl?: string;
-}
-
-// All configurations will extend these options
-// ============================================
-
-const common: IConfig = {
-    env: env,
+const common: IEnvConfig = {
+    env,
+    port: process.env.PORT || 1416,
     mongo: {
-        options: {
-            // db: {
-            //     // safe: true // in Mongo 2.0 this option is "true" by default and is equals to {w:1}
-            //     // details: http://stackoverflow.com/a/14801527
-            // }
-        }
+        uri: process.env.MONGO_URI,
+        dbName: process.env.MONGO_DB_NAME,
     },
-    rollbarToken: "c40dd41c292340419923230eed1d0d61",
-    root: path.normalize(__dirname + "/../../..") // 3 folders back from the current folder
+    rollbarToken: process.env.ROLLBAR_TOKEN,
+    logglyToken: process.env.LOGGLY_TOKEN,
+    logglySubdomain: process.env.LOGGLY_SUBDOMAIN,
+
+    logLevel: process.env.LOG_LEVEL || LogLevel.WARNING,
+
+    httpLogDetails: {
+        request: {
+            general: process.env.HTTP_LOG_DETAILS_REQUEST_GENERAL || LogDetail.FULL,
+            headers: process.env.HTTP_LOG_DETAILS_REQUEST_HEADERS || LogDetail.PARTIAL,
+            body: (process.env.HTTP_LOG_DETAILS_REQUEST_BODY as boolean | undefined) || false,
+        },
+        response: {
+            general: (process.env.HTTP_LOG_DETAILS_RESPONSE_GENERAL as boolean | undefined) || false,
+            headers: (process.env.HTTP_LOG_DETAILS_RESPONSE_HEADERS as boolean | undefined) || false,
+            body: (process.env.HTTP_LOG_DETAILS_RESPONSE_BODY as boolean | undefined) || false,
+        },
+    },
 };
 
 const config = _.merge(common, envConfig);
 
-export { IConfig, EnvironmentType };
 export default config;

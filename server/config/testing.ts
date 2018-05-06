@@ -1,11 +1,10 @@
-import { IConfig } from "./";
+import { IEnvConfig } from "../interfaces";
 
-const config: IConfig = {
-    port: process.env.PORT || 1416,
+const config: IEnvConfig = {
     mongo: {
-        uri: "mongodb://localhost/cantinas-test"
+        uri: "mongodb://localhost",
+        dbName: "cantinas-test",
     },
-    authRootUrl: process.env.AUTH_ROOT_URL || "http://cantinas.ro"
 };
 
 export default config;
