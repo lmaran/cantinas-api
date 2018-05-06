@@ -61,7 +61,7 @@ app.use(setContext); // adds requestId, tokenCode and other properties to the re
 
 app.use(httpLogHandler);
 
-app.use(allRoutes);
+app.use("/api", allRoutes);
 
 // catch 404 and forward to error handler
 app.use(catch404);
