@@ -1,10 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 // import { stringHelper } from "../helpers";
 // import * as err from "../errors";
 // import { ReturnType } from "../constants";
 
 export const homeController = {
-
     // getHomePage: async (req: Request, res: Response, next: NextFunction) => {
     //     try {
     //         const tenantCode = req.ctx.tenantCode;
@@ -25,5 +24,4 @@ export const homeController = {
     getHomePage: async (req: Request, res: Response) => {
         res.send("Hello Cantinas API");
     },
-
 };
