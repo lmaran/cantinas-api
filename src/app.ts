@@ -1,12 +1,12 @@
+import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as path from "path";
+import { catch404, errorHandler, httpLogHandler, setContext } from "./middlewares";
 import allRoutes from "./routes";
-import { setContext, errorHandler, httpLogHandler, catch404 } from "./middlewares";
-
-import * as url from "url";
-import * as bodyParser from "body-parser";
 
 const app: express.Application = express();
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 // https://expressjs.com/en/guide/behind-proxies.html
 app.enable("trust proxy"); // allow express to set req.ip
@@ -19,6 +19,7 @@ app.use(setContext); // adds requestId, tokenCode and other properties to the re
 
 app.use(httpLogHandler);
 
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api", allRoutes);
 
 // catch 404 and forward to error handler
