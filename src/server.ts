@@ -1,6 +1,6 @@
 import * as http from "http";
-import config from "./config";
 import app from "./app";
+import config from "./config";
 import logger from "./logger";
 
 const httpServer: http.Server = http.createServer(app);
@@ -56,7 +56,7 @@ httpServer.on("close", () => {
 // Intentionally cause an exception, but don't catch it.
 // nonexistentFunc();
 process.on("uncaughtException", (err: Error) => {
-    logger.error(`Caught exception: ${err.message}`, {err});
+    logger.error(`Caught exception: ${err.message}`, { err });
     // https://stackoverflow.com/a/40867663
     // The correct use of 'uncaughtException' is to perform synchronous cleanup of allocated
     // resources (e.g. file descriptors, handles, etc) before shutting down the process.
@@ -78,7 +78,7 @@ process.on("uncaughtException", (err: Error) => {
 process.on("unhandledRejection", (reason: Error | any, promise: Promise<any>) => {
     // reason - the object with which the promise was rejected (typically an Error object)
     // promise - the Promise that was rejected
-    logger.error(`Caught rejection at ${promise}, reason: ${reason}`, { promise, reason} );
+    logger.error(`Caught rejection at ${promise}, reason: ${reason}`, { promise, reason });
     // application specific logging, throwing an error, or other logic here
 
     // throw the error in order to force nodejs to crash
@@ -145,7 +145,7 @@ function gracefulShutdown(eventName) {
     });
 
     // Force close server after 5 secs
-    setTimeout( () => {
+    setTimeout(() => {
         logger.warn("Forcing server to close");
         process.exit(1); // exit with failure code
     }, 5000);

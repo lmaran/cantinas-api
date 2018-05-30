@@ -6,17 +6,6 @@ export interface IClient {
     tenantCode: string;
 }
 
-export interface IUser {
-    sub: string;
-    preferred_username: string;
-    name: string;
-    email: string;
-    email_verified: boolean;
-    username: string;
-    hashedPassword: string;
-    salt: string;
-}
-
 // export interface IUsersObj {
 //     [key: string]: IUser;
 // }

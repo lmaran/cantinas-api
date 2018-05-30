@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { IUser } from "../interfaces";
 import { userService } from "../services";
 
 export const userController = {
@@ -23,7 +24,7 @@ export const userController = {
             });
         }
 
-        const user = req.body;
+        const user: IUser = req.body;
 
         await userService.insertOne(user);
         res.json(user);

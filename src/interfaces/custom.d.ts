@@ -16,15 +16,17 @@ import { IContext } from "../interfaces";
 // https://stackoverflow.com/a/47448486
 declare global {
     namespace Express {
+        // tslint:disable-next-line
         interface Request {
-            ctx: IContext
+            ctx: IContext;
         }
     }
 }
 
 // https://stackoverflow.com/a/43797190
 declare module "winston" {
+    // tslint:disable-next-line
     export interface Transports {
-        Rollbar?: any,
+        Rollbar?: any;
     }
- }
+}
