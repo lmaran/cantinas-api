@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const http = require("http");
-const config_1 = require("./config");
 const app_1 = require("./app");
+const config_1 = require("./config");
 const logger_1 = require("./logger");
 const httpServer = http.createServer(app_1.default);
 httpServer.listen(config_1.default.port);
