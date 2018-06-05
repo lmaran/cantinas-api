@@ -8,6 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Ajv = require("ajv");
+const interfaces_1 = require("../interfaces");
 const services_1 = require("../services");
 exports.userController = {
     getAll: (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -20,14 +22,17 @@ exports.userController = {
         res.json(user);
     }),
     insertOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
-        if (!req.body) {
-            return res.status(400).send({
-                message: "User content can not be empty",
-            });
+        const ajv = new Ajv();
+        const isValidUser = ajv.validate(interfaces_1.userSchema, req.body);
+        if (isValidUser) {
+            const user = req.body;
+            yield services_1.userService.insertOne(user);
+            res.json(user);
         }
-        const user = req.body;
-        yield services_1.userService.insertOne(user);
-        res.json(user);
+        else {
+            console.log(ajv.errors);
+            res.status(400).json(ajv.errors);
+        }
     }),
     updateOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
         if (!req.body) {

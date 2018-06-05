@@ -13,7 +13,10 @@ const collection = "users";
 exports.userService = {
     getAll: () => __awaiter(this, void 0, void 0, function* () {
         const db = yield helpers_1.mongoHelper.getDb();
-        const users = yield db.collection(collection).find().toArray();
+        const users = yield db
+            .collection(collection)
+            .find()
+            .toArray();
         return users;
     }),
     getOneById: (id) => __awaiter(this, void 0, void 0, function* () {
