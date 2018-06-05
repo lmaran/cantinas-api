@@ -4,10 +4,12 @@ import { IUser } from "../interfaces";
 const collection = "users";
 
 export const userService = {
-
     getAll: async (): Promise<IUser[]> => {
         const db = await mongoHelper.getDb();
-        const users =  await db.collection(collection).find().toArray();
+        const users = await db
+            .collection(collection)
+            .find()
+            .toArray();
         return users;
     },
 
@@ -16,9 +18,9 @@ export const userService = {
         id = mongoHelper.normalizedId(id);
         const user = await db.collection(collection).findOne({ _id: id });
         return user;
-      },
+    },
 
-    insertOne: async (user: any) => {
+    insertOne: async (user: IUser) => {
         const db = await mongoHelper.getDb();
         return await db.collection(collection).insertOne(user);
     },
@@ -34,5 +36,4 @@ export const userService = {
         id = mongoHelper.normalizedId(id);
         return await db.collection(collection).deleteOne({ _id: id });
     },
-
 };

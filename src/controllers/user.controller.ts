@@ -1,5 +1,6 @@
+import * as Ajv from "ajv";
 import { Request, Response } from "express";
-import { IUser } from "../interfaces";
+import { IUser, userSchema } from "../interfaces";
 import { userService } from "../services";
 
 export const userController = {
@@ -18,16 +19,23 @@ export const userController = {
     insertOne: async (req: Request, res: Response) => {
         // console.log("aaa");
         // Validate request
-        if (!req.body) {
-            return res.status(400).send({
-                message: "User content can not be empty",
-            });
+        // if (!req.body) {
+        //     return res.status(400).send({
+        //         message: "User content can not be empty",
+        //     });
+        // }
+
+        const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
+        const isValidUser = ajv.validate(userSchema, req.body);
+
+        if (isValidUser) {
+            const user: IUser = req.body;
+            await userService.insertOne(user);
+            res.json(user);
+        } else {
+            console.log(ajv.errors);
+            res.status(400).json(ajv.errors);
         }
-
-        const user: IUser = req.body;
-
-        await userService.insertOne(user);
-        res.json(user);
     },
 
     updateOne: async (req: Request, res: Response) => {
