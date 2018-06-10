@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Ajv = require("ajv");
-const interfaces_1 = require("../interfaces");
 const services_1 = require("../services");
+const userSchema = require("../interfaces/user/user.schema");
 exports.userController = {
     getAll: (req, res) => __awaiter(this, void 0, void 0, function* () {
         const users = yield services_1.userService.getAll();
@@ -22,16 +22,20 @@ exports.userController = {
         res.json(user);
     }),
     insertOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
-        const ajv = new Ajv();
-        const isValidUser = ajv.validate(interfaces_1.userSchema, req.body);
+        const ajv = new Ajv({
+            allErrors: true,
+            removeAdditional: true,
+        });
+        const validate = ajv.compile(userSchema);
+        const isValidUser = validate(req.body);
         if (isValidUser) {
             const user = req.body;
             yield services_1.userService.insertOne(user);
             res.json(user);
         }
         else {
-            console.log(ajv.errors);
-            res.status(400).json(ajv.errors);
+            console.log(validate.errors);
+            res.status(400).json(validate.errors);
         }
     }),
     updateOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
