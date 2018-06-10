@@ -3,10 +3,12 @@
     "type": "object",
     "properties": {
         "firstName": {
-            "type": "string"
+            "type": "number",
+            "minLength": 8
         },
         "lastName": {
-            "type": "string"
+            "type": "string",
+            "minLength": 5
         },
         "age": {
             "description": "Age in years",

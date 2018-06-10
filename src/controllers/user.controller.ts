@@ -1,7 +1,8 @@
 import * as Ajv from "ajv";
 import { Request, Response } from "express";
-import { IUser, userSchema } from "../interfaces";
+import { IUser } from "../interfaces";
 import { userService } from "../services";
+const userSchema = require("../interfaces/user/user.schema");
 
 export const userController = {
     getAll: async (req: Request, res: Response) => {
@@ -25,16 +26,20 @@ export const userController = {
         //     });
         // }
 
-        const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
-        const isValidUser = ajv.validate(userSchema, req.body);
+        const ajv = new Ajv({
+            allErrors: true, // Default is to return after the first error.
+            removeAdditional: true, // This option modifies original data (remove undefined properties)
+        });
+        const validate = ajv.compile(userSchema);
+        const isValidUser = validate(req.body);
 
         if (isValidUser) {
             const user: IUser = req.body;
             await userService.insertOne(user);
             res.json(user);
         } else {
-            console.log(ajv.errors);
-            res.status(400).json(ajv.errors);
+            console.log(validate.errors);
+            res.status(400).json(validate.errors);
         }
     },
 
