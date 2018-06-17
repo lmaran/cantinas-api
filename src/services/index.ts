@@ -1,3 +1,2 @@
-// export * from "./client.service";
-// export * from "./token.service";
+export * from "./dish.service";
 export * from "./user.service";

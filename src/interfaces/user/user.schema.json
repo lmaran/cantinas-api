@@ -3,8 +3,8 @@
     "type": "object",
     "properties": {
         "firstName": {
-            "type": "number",
-            "minLength": 8
+            "type": "string",
+            "minLength": 4
         },
         "lastName": {
             "type": "string",

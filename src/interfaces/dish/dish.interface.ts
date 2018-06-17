@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IDish {
     // sub: string;
     // preferred_username: string;
     // name: string;

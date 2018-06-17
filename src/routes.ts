@@ -1,13 +1,6 @@
 import { Router } from "express";
 // import { getAccessToken, requireAccessToken } from "./middlewares";
-
-import {
-    checkController,
-    homeController,
-    userController,
-    // contactController, authorizeController, approveController, tokenController,
-    // userinfoController, homepageController
-} from "./controllers";
+import { checkController, dishController, homeController, userController } from "./controllers";
 
 const router = Router();
 
@@ -23,5 +16,12 @@ router.get("/v1/users/:id", userController.getOneById);
 router.post("/v1/users/", userController.insertOne);
 router.put("/v1/users/", userController.updateOne);
 router.delete("/v1/users/:id", userController.deleteOneById);
+
+// dish
+router.get("/v1/dishes/", dishController.getAll);
+router.get("/v1/dishes/:id", dishController.getOneById);
+router.post("/v1/dishes/", dishController.insertOne);
+router.put("/v1/dishes/", dishController.updateOne);
+router.delete("/v1/dishes/:id", dishController.deleteOneById);
 
 export default router;

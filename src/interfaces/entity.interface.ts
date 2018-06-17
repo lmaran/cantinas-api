@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IEntity {
     // sub: string;
     // preferred_username: string;
     // name: string;
@@ -8,7 +8,7 @@ export interface IUser {
     // hashedPassword: string;
     // salt: string;
     _id: string;
-    firstName: string;
-    lastName: string;
+    name: string;
+    description: string;
     age?: number;
 }
