@@ -9,16 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Ajv = require("ajv");
-const dish_service_1 = require("../services/dish.service");
-const entitySchema = require("../interfaces/dish/dish.schema");
+const entity_service_1 = require("../services/entity.service");
+const entitySchema = require("../interfaces/warehouse/warehouse.schema");
+const allEntities = ["dishes", "warehouses"];
 exports.entityController = {
-    getAll: (req, res) => __awaiter(this, void 0, void 0, function* () {
-        const entities = yield dish_service_1.entityService.getAll();
+    getAll: (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        const entityName = req.params.entity;
+        if (!allEntities.includes(entityName)) {
+            return next("route");
+        }
+        const entities = yield entity_service_1.entityService.getAll(entityName);
         res.json(entities);
     }),
     getOneById: (req, res) => __awaiter(this, void 0, void 0, function* () {
         const entityId = req.params.id;
-        const entity = yield dish_service_1.entityService.getOneById(entityId);
+        const entity = yield entity_service_1.entityService.getOneById(entityId);
         res.json(entity);
     }),
     insertOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -30,7 +35,7 @@ exports.entityController = {
         const entity = req.body;
         const isValidEntity = validate(entity);
         if (isValidEntity) {
-            yield dish_service_1.entityService.insertOne(entity);
+            yield entity_service_1.entityService.insertOne(entity);
             res.json(entity);
         }
         else {
@@ -45,12 +50,12 @@ exports.entityController = {
             });
         }
         const entity = req.body;
-        yield dish_service_1.entityService.updateOne(entity);
+        yield entity_service_1.entityService.updateOne(entity);
         res.json(entity);
     }),
     deleteOneById: (req, res) => __awaiter(this, void 0, void 0, function* () {
         const entityId = req.params.id;
-        yield dish_service_1.entityService.deleteOneById(entityId);
+        yield entity_service_1.entityService.deleteOneById(entityId);
         res.sendStatus(204);
     }),
 };

@@ -4,6 +4,5 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./check.controller"));
-__export(require("./dish.controller"));
 __export(require("./home.controller"));
 __export(require("./user.controller"));
