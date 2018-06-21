@@ -9,6 +9,6 @@ export interface IEntity {
     // salt: string;
     _id: string;
     name: string;
-    description: string;
-    age?: number;
+    // description: string;
+    // age?: number;
 }

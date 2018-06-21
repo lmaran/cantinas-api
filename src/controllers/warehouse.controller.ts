@@ -1,7 +1,7 @@
 import * as Ajv from "ajv";
 import { Request, Response } from "express";
-import { entityService } from "../services/dish.service";
-const entitySchema = require("../interfaces/dish/dish.schema");
+import { entityService } from "../services/warehouse.service";
+const entitySchema = require("../interfaces/warehouse/warehouse.schema");
 
 export const entityController = {
     getAll: async (req: Request, res: Response) => {
