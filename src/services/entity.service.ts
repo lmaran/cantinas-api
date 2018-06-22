@@ -36,4 +36,9 @@ export const entityService = {
         id = mongoHelper.normalizedId(id);
         return await db.collection(collection).deleteOne({ _id: id });
     },
+
+    getAllEntities: async (): Promise<string[]> => {
+        // todo: get them from db and then cache
+        return ["dishes", "warehouses"];
+    },
 };

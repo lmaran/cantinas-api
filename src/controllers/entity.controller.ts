@@ -3,16 +3,13 @@ import { NextFunction, Request, Response } from "express";
 import { entityService } from "../services/entity.service";
 const entitySchema = require("../interfaces/warehouse/warehouse.schema");
 
-const allEntities = ["dishes", "warehouses"];
-
 export const entityController = {
     getAll: async (req: Request, res: Response, next: NextFunction) => {
         const entityName = req.params.entity;
-        if (!allEntities.includes(entityName)) {
-            return next("route");
-        }
-        const entities = await entityService.getAll(entityName);
-        res.json(entities);
+        await validateEntityName(entityName, next);
+
+        const entityItems = await entityService.getAll(entityName);
+        res.json(entityItems);
     },
 
     getOneById: async (req: Request, res: Response) => {
@@ -73,3 +70,10 @@ export const entityController = {
         res.sendStatus(204);
     },
 };
+
+async function validateEntityName(entityName: string, next: NextFunction) {
+    const allEntities = await entityService.getAllEntities();
+    if (!allEntities.includes(entityName)) {
+        return next("route");
+    }
+}
