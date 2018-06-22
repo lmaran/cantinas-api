@@ -39,4 +39,7 @@ exports.entityService = {
         id = helpers_1.mongoHelper.normalizedId(id);
         return yield db.collection(collection).deleteOne({ _id: id });
     }),
+    getAllEntities: () => __awaiter(this, void 0, void 0, function* () {
+        return ["dishes", "warehouses"];
+    }),
 };

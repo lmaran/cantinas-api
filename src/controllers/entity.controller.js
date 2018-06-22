@@ -11,15 +11,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Ajv = require("ajv");
 const entity_service_1 = require("../services/entity.service");
 const entitySchema = require("../interfaces/warehouse/warehouse.schema");
-const allEntities = ["dishes", "warehouses"];
 exports.entityController = {
     getAll: (req, res, next) => __awaiter(this, void 0, void 0, function* () {
         const entityName = req.params.entity;
-        if (!allEntities.includes(entityName)) {
-            return next("route");
-        }
-        const entities = yield entity_service_1.entityService.getAll(entityName);
-        res.json(entities);
+        yield validateEntityName(entityName, next);
+        const entityItems = yield entity_service_1.entityService.getAll(entityName);
+        res.json(entityItems);
     }),
     getOneById: (req, res) => __awaiter(this, void 0, void 0, function* () {
         const entityId = req.params.id;
@@ -59,3 +56,11 @@ exports.entityController = {
         res.sendStatus(204);
     }),
 };
+function validateEntityName(entityName, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const allEntities = yield entity_service_1.entityService.getAllEntities();
+        if (!allEntities.includes(entityName)) {
+            return next("route");
+        }
+    });
+}
