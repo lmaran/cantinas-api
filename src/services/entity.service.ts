@@ -1,10 +1,19 @@
 import { mongoHelper } from "../helpers";
 import { IEntity } from "../interfaces/entity.interface";
 
-const collection = "warehouses";
+const collection = "entities";
 
 export const entityService = {
-    getAll: async (entityName: string): Promise<IEntity[]> => {
+    getAll: async (): Promise<IEntity[]> => {
+        const db = await mongoHelper.getDb();
+        const entities = await db
+            .collection(collection)
+            .find()
+            .toArray();
+        return entities;
+    },
+
+    getAllItems: async (entityName: string): Promise<IEntity[]> => {
         const db = await mongoHelper.getDb();
         const entities = await db
             .collection(entityName)

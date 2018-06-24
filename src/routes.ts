@@ -20,9 +20,11 @@ router.post("/v1/users/", userController.insertOne);
 router.put("/v1/users/", userController.updateOne);
 router.delete("/v1/users/:id", userController.deleteOneById);
 
+router.get("/v1/entities/", entityController.getAll);
+
 // entities
 // router.get("/v1/:entity(dishes|warehouses)/", entityController.getAll);
-router.get("/v1/:entity/", entityController.getAll);
+router.get("/v1/:entity/", entityController.getAllItems);
 // router.get("/v1/warehouses/:id", warehouseController.getOneById);
 // router.post("/v1/warehouses/", warehouseController.insertOne);
 // router.put("/v1/warehouses/", warehouseController.updateOne);

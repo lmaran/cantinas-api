@@ -4,11 +4,16 @@ import { entityService } from "../services/entity.service";
 const entitySchema = require("../interfaces/warehouse/warehouse.schema");
 
 export const entityController = {
-    getAll: async (req: Request, res: Response, next: NextFunction) => {
+    getAll: async (req: Request, res: Response) => {
+        const entities = await entityService.getAll();
+        res.json(entities);
+    },
+
+    getAllItems: async (req: Request, res: Response, next: NextFunction) => {
         const entityName = req.params.entity;
         await validateEntityName(entityName, next);
 
-        const entityItems = await entityService.getAll(entityName);
+        const entityItems = await entityService.getAllItems(entityName);
         res.json(entityItems);
     },
 
