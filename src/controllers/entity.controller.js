@@ -12,10 +12,14 @@ const Ajv = require("ajv");
 const entity_service_1 = require("../services/entity.service");
 const entitySchema = require("../interfaces/warehouse/warehouse.schema");
 exports.entityController = {
-    getAll: (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    getAll: (req, res) => __awaiter(this, void 0, void 0, function* () {
+        const entities = yield entity_service_1.entityService.getAll();
+        res.json(entities);
+    }),
+    getAllItems: (req, res, next) => __awaiter(this, void 0, void 0, function* () {
         const entityName = req.params.entity;
         yield validateEntityName(entityName, next);
-        const entityItems = yield entity_service_1.entityService.getAll(entityName);
+        const entityItems = yield entity_service_1.entityService.getAllItems(entityName);
         res.json(entityItems);
     }),
     getOneById: (req, res) => __awaiter(this, void 0, void 0, function* () {
