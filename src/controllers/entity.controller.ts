@@ -1,4 +1,3 @@
-import * as Ajv from "ajv";
 import { NextFunction, Request, Response } from "express";
 import { entityService } from "../services/entity.service";
 const entitySchema = require("../interfaces/warehouse/warehouse.schema");
@@ -25,28 +24,23 @@ export const entityController = {
     },
 
     insertOne: async (req: Request, res: Response) => {
-        // console.log("aaa");
-        // Validate request
-        // if (!req.body) {
-        //     return res.status(400).send({
-        //         message: "entity content can not be empty",
-        //     });
-        // }
-
-        const ajv = new Ajv({
-            allErrors: true, // Default is to return after the first error.
-            removeAdditional: true, // This option modifies original data (remove undefined properties)
-        });
-        const validate = ajv.compile(entitySchema);
+        // const ajv = new Ajv({
+        //     allErrors: true, // Default is to return after the first error.
+        //     removeAdditional: true, // This option modifies original data (remove undefined properties)
+        // });
+        // const validate = ajv.compile(entitySchema);
         const entity = req.body;
-        const isValidEntity = validate(entity);
+        // const isValidEntity = validate(entity);
+
+        const isValidEntity = true;
 
         if (isValidEntity) {
             await entityService.insertOne(entity);
             res.json(entity);
         } else {
-            console.log(validate.errors);
-            res.status(400).json(validate.errors);
+            // console.log(validate.errors);
+            // res.status(400).json(validate.errors);
+            res.status(400);
         }
     },
 
