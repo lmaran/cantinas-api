@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Ajv = require("ajv");
 const entity_service_1 = require("../services/entity.service");
 const entitySchema = require("../interfaces/warehouse/warehouse.schema");
 exports.entityController = {
@@ -28,20 +27,14 @@ exports.entityController = {
         res.json(entity);
     }),
     insertOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
-        const ajv = new Ajv({
-            allErrors: true,
-            removeAdditional: true,
-        });
-        const validate = ajv.compile(entitySchema);
         const entity = req.body;
-        const isValidEntity = validate(entity);
+        const isValidEntity = true;
         if (isValidEntity) {
             yield entity_service_1.entityService.insertOne(entity);
             res.json(entity);
         }
         else {
-            console.log(validate.errors);
-            res.status(400).json(validate.errors);
+            res.status(400);
         }
     }),
     updateOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
