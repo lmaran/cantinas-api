@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const entity_service_1 = require("../services/entity.service");
-const entitySchema = require("../interfaces/warehouse/warehouse.schema");
+const entitySchema = require("../interfaces/entity/entity.schema");
 exports.entityController = {
     getAll: (req, res) => __awaiter(this, void 0, void 0, function* () {
         const entities = yield entity_service_1.entityService.getAll();
@@ -28,14 +28,8 @@ exports.entityController = {
     }),
     insertOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
         const entity = req.body;
-        const isValidEntity = true;
-        if (isValidEntity) {
-            yield entity_service_1.entityService.insertOne(entity);
-            res.json(entity);
-        }
-        else {
-            res.status(400);
-        }
+        yield entity_service_1.entityService.insertOne(entity);
+        res.json(entity);
     }),
     updateOne: (req, res) => __awaiter(this, void 0, void 0, function* () {
         if (!req.body) {
