@@ -1,4 +1,5 @@
 import * as http from "http";
+import { AddressInfo } from "net";
 import app from "./app";
 import config from "./config";
 import logger from "./logger";
@@ -7,7 +8,7 @@ const httpServer: http.Server = http.createServer(app);
 httpServer.listen(config.port);
 
 httpServer.on("listening", () => {
-    const addr = httpServer.address();
+    const addr = httpServer.address() as AddressInfo;
     logger.warn(`Express server listening on port ${addr.port} in ${config.env} mode (pid: ${process.pid})`);
 
     // Graceful start (with PM2)
