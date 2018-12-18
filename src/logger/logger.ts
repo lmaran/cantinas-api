@@ -16,17 +16,16 @@
 // HttpLogHandler           | log.info("httpLogHandler", {req, res})  | Loggly
 // Client err handler (4xx) | log.info("clientError", {err})          | Loggly
 
-import * as winston from "winston";
+const { createLogger, format, transports } = require("winston");
 import config from "../config";
 import { EnvironmentType, LogLevel } from "../constants";
 // import { formatterFunc } from "./winston-console.formatter";
-
-require("./winston-rollbar.transport"); // init Rollbar transport for Winston
-require("./winston-loggly.transport");
+import { Rollbar } from "./winston-rollbar.transport2";
+const { Loggly } = require("./winston-loggly.transport2");
 
 const rollbarOptions = {
     accessToken: config.rollbarToken,
-    reportLevel: LogLevel.WARNING,  // catches just errors and warnings; default: "warning"
+    reportLevel: LogLevel.WARNING, // catches just errors and warnings; default: "warning"
     environment: config.env,
     scrubFields: ["password", "oldPassword", "newPassword", "hashedPassword", "salt"],
 };
@@ -38,21 +37,22 @@ const logglyOptions = {
     json: true,
 };
 
-const logger = new winston.Logger();
+const logger = createLogger({});
 
 // Winston && Rollbar: debug > info > warning > error
 // E.g. 'info' level catches also 'warning' or 'error' but not 'debug'
 
 if (config.env === EnvironmentType.PRODUCTION || config.env === EnvironmentType.STAGING) {
-    logger.add(winston.transports.Rollbar, rollbarOptions);
-    logger.add(winston.transports.Loggly, logglyOptions);
-} else { // development
+    logger.add(new Loggly(logglyOptions));
+    logger.add(new Rollbar({ rollbarConfig: rollbarOptions }));
+} else {
+    // development
     const formatterFunc = require("./winston-console.formatter").formatterFunc;
     const consoleOptions = {
         level: LogLevel.DEBUG, // catches all messages
         formatter: formatterFunc,
     };
-    logger.add(winston.transports.Console, consoleOptions);
+    logger.add(new transports.Console(consoleOptions));
 }
 
 export default logger;
