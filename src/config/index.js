@@ -9,6 +9,7 @@ const common = {
     mongo: {
         uri: process.env.MONGO_URI,
         dbName: process.env.MONGO_DB_NAME,
+        options: { useNewUrlParser: true },
     },
     rollbarToken: process.env.ROLLBAR_TOKEN,
     logglyToken: process.env.LOGGLY_TOKEN,

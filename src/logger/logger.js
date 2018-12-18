@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const winston = require("winston");
+const { createLogger, format, transports } = require("winston");
 const config_1 = require("../config");
-require("./winston-rollbar.transport");
-require("./winston-loggly.transport");
+const winston_rollbar_transport2_1 = require("./winston-rollbar.transport2");
+const { Loggly } = require("./winston-loggly.transport2");
 const rollbarOptions = {
     accessToken: config_1.default.rollbarToken,
     reportLevel: "warning",
@@ -16,10 +16,10 @@ const logglyOptions = {
     tags: ["cantinas", config_1.default.env],
     json: true,
 };
-const logger = new winston.Logger();
+const logger = createLogger({});
 if (config_1.default.env === "production" || config_1.default.env === "staging") {
-    logger.add(winston.transports.Rollbar, rollbarOptions);
-    logger.add(winston.transports.Loggly, logglyOptions);
+    logger.add(new Loggly(logglyOptions));
+    logger.add(new winston_rollbar_transport2_1.Rollbar({ rollbarConfig: rollbarOptions }));
 }
 else {
     const formatterFunc = require("./winston-console.formatter").formatterFunc;
@@ -27,6 +27,6 @@ else {
         level: "debug",
         formatter: formatterFunc,
     };
-    logger.add(winston.transports.Console, consoleOptions);
+    logger.add(new transports.Console(consoleOptions));
 }
 exports.default = logger;
